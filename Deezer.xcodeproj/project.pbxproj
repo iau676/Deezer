@@ -16,6 +16,7 @@
 		7056579D2A0D626200C7E791 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7056579C2A0D626200C7E791 /* MainTabController.swift */; };
 		7056579F2A0D63AB00C7E791 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7056579E2A0D63AB00C7E791 /* UIImage+Extensions.swift */; };
 		705657A12A0D650B00C7E791 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657A02A0D650B00C7E791 /* Constants.swift */; };
+		705657A82A0D7B7C00C7E791 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657A72A0D7B7C00C7E791 /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7056579C2A0D626200C7E791 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		7056579E2A0D63AB00C7E791 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		705657A02A0D650B00C7E791 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		705657A72A0D7B7C00C7E791 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				705657A02A0D650B00C7E791 /* Constants.swift */,
+				705657A22A0D6ACD00C7E791 /* Model */,
+				705657A32A0D6AD100C7E791 /* View */,
 				705657962A0D4FD400C7E791 /* Controller */,
 				705657982A0D51A600C7E791 /* Extensions */,
 				705657972A0D50D700C7E791 /* Files */,
@@ -106,6 +110,21 @@
 				7056579E2A0D63AB00C7E791 /* UIImage+Extensions.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		705657A22A0D6ACD00C7E791 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		705657A32A0D6AD100C7E791 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				705657A72A0D7B7C00C7E791 /* CategoryCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +204,7 @@
 				705657A12A0D650B00C7E791 /* Constants.swift in Sources */,
 				7056579B2A0D51C600C7E791 /* UIView+Extensions.swift in Sources */,
 				705657862A0D4F3B00C7E791 /* Deezer.xcdatamodeld in Sources */,
+				705657A82A0D7B7C00C7E791 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
