@@ -15,6 +15,10 @@ struct CategoryViewModel {
         return category.name
     }
     
+    var pictureMediumUrl: URL? {
+        return URL(string: category.pictureMedium)
+    }
+    
     init(category: Category) {
         self.category = category
     }

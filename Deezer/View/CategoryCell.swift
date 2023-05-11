@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class CategoryCell: UICollectionViewCell {
     
@@ -17,7 +18,7 @@ final class CategoryCell: UICollectionViewCell {
         }
     }
     
-    private let categoryLabel: UILabel = {
+    private let label: UILabel = {
         let label = UILabel()
         label.textColor = .label
         label.text = "Category"
@@ -54,9 +55,9 @@ final class CategoryCell: UICollectionViewCell {
         addSubview(borderView)
         borderView.fillSuperview()
         
-        addSubview(categoryLabel)
-        categoryLabel.centerX(inView: self)
-        categoryLabel.anchor(bottom: bottomAnchor, paddingBottom: 16)
+        addSubview(label)
+        label.centerX(inView: self)
+        label.anchor(bottom: bottomAnchor, paddingBottom: 16)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,6 +69,7 @@ final class CategoryCell: UICollectionViewCell {
     private func configure() {
         guard let viewModel = viewModel else { return }
         
-        categoryLabel.text = viewModel.categoryName
+        label.text = viewModel.categoryName
+        imageView.sd_setImage(with: viewModel.pictureMediumUrl)
     }
 }

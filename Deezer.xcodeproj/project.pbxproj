@@ -20,6 +20,7 @@
 		705657AC2A0D9D8800C7E791 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657AB2A0D9D8800C7E791 /* Category.swift */; };
 		705657AF2A0D9DD100C7E791 /* DeezerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657AE2A0D9DD100C7E791 /* DeezerService.swift */; };
 		705657B22A0DA27F00C7E791 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657B12A0DA27F00C7E791 /* CategoryViewModel.swift */; };
+		705657B52A0DADFB00C7E791 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 705657B42A0DADFB00C7E791 /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				705657B52A0DADFB00C7E791 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +170,9 @@
 			dependencies = (
 			);
 			name = Deezer;
+			packageProductDependencies = (
+				705657B42A0DADFB00C7E791 /* SDWebImage */,
+			);
 			productName = Deezer;
 			productReference = 705657782A0D4F3B00C7E791 /* Deezer.app */;
 			productType = "com.apple.product-type.application";
@@ -196,6 +201,9 @@
 				Base,
 			);
 			mainGroup = 7056576F2A0D4F3B00C7E791;
+			packageReferences = (
+				705657B32A0DADFB00C7E791 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 705657792A0D4F3B00C7E791 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -442,6 +450,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		705657B32A0DADFB00C7E791 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		705657B42A0DADFB00C7E791 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 705657B32A0DADFB00C7E791 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		705657842A0D4F3B00C7E791 /* Deezer.xcdatamodeld */ = {
