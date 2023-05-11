@@ -11,6 +11,12 @@ final class CategoryCell: UICollectionViewCell {
     
     //MARK: - Properties
     
+    var viewModel: CategoryViewModel? {
+        didSet {
+            configure()
+        }
+    }
+    
     private let categoryLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
@@ -55,5 +61,13 @@ final class CategoryCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Helpers
+    
+    private func configure() {
+        guard let viewModel = viewModel else { return }
+        
+        categoryLabel.text = viewModel.categoryName
     }
 }

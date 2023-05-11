@@ -13,6 +13,14 @@ final class HomeController: UIViewController {
     
     //MARK: - Properties
     
+    private var categories = [Category]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.categoryCV.reloadData()
+            }
+        }
+    }
+    
     private var categoryCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -27,6 +35,15 @@ final class HomeController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
+        fetchCategories()
+    }
+    
+    //MARK: - API
+    
+    private func fetchCategories() {
+        DeezerService.fetchCategories { categories in
+            self.categories = categories
+        }
     }
     
     //MARK: - Helpers
@@ -52,16 +69,17 @@ final class HomeController: UIViewController {
 extension HomeController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCell
+        cell.viewModel = CategoryViewModel(category: categories[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("DEBUG::index=\(indexPath.row)")
+        print("DEBUG::name=\(categories[indexPath.row].name)")
     }
 }
 
