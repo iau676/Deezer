@@ -8,7 +8,13 @@
 import UIKit
 import SDWebImage
 
+protocol SongCellDelegate: AnyObject {
+    func handleLike()
+}
+
 final class SongCell: UICollectionViewCell {
+    
+    weak var delegate: SongCellDelegate?
     
     //MARK: - Properties
     
@@ -27,10 +33,11 @@ final class SongCell: UICollectionViewCell {
         return label
     }()
     
-    private let likeButton: UIButton = {
+    private lazy var likeButton: UIButton = {
        let button = UIButton()
         let image = Images.heart?.imageResized(to: CGSize(width: 32, height: 32)).withTintColor(.lightGray)
         button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(likeButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -84,5 +91,12 @@ final class SongCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Selectors
+    
+    @objc private func likeButtonPressed() {
+        print("DEBUG::likeButtonPressed")
+        delegate?.handleLike()
     }
 }

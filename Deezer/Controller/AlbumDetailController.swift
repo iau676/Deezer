@@ -68,6 +68,7 @@ extension AlbumDetailController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SongCell
+        cell.delegate = self
         return cell
     }
     
@@ -82,5 +83,13 @@ extension AlbumDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (view.bounds.width-3*8)
         return CGSize(width: cellWidth, height: 100)
+    }
+}
+
+//MARK: - SongCellDelegate
+
+extension AlbumDetailController: SongCellDelegate {
+    func handleLike() {
+        print("DEBUG::handleLike")
     }
 }
