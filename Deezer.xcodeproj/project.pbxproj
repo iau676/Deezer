@@ -31,6 +31,8 @@
 		705657C52A0DD9CF00C7E791 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657C42A0DD9CF00C7E791 /* AlbumViewModel.swift */; };
 		70C8D8FD2A0E389B00CEBC20 /* ArtistHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8D8FC2A0E389B00CEBC20 /* ArtistHeader.swift */; };
 		70C8D8FF2A0E3A0100CEBC20 /* ArtistHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8D8FE2A0E3A0100CEBC20 /* ArtistHeaderViewModel.swift */; };
+		70C8D9012A0E5DA100CEBC20 /* AlbumDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8D9002A0E5DA100CEBC20 /* AlbumDetailController.swift */; };
+		70C8D9052A0E5F6300CEBC20 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8D9042A0E5F6300CEBC20 /* SongCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		705657C42A0DD9CF00C7E791 /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
 		70C8D8FC2A0E389B00CEBC20 /* ArtistHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistHeader.swift; sourceTree = "<group>"; };
 		70C8D8FE2A0E3A0100CEBC20 /* ArtistHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistHeaderViewModel.swift; sourceTree = "<group>"; };
+		70C8D9002A0E5DA100CEBC20 /* AlbumDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailController.swift; sourceTree = "<group>"; };
+		70C8D9042A0E5F6300CEBC20 /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 				7056577F2A0D4F3B00C7E791 /* HomeController.swift */,
 				705657B62A0DB63200C7E791 /* ArtistListController.swift */,
 				705657BE2A0DCF5C00C7E791 /* ArtistDetailController.swift */,
+				70C8D9002A0E5DA100CEBC20 /* AlbumDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 				705657BC2A0DC42000C7E791 /* ArtistCell.swift */,
 				705657C02A0DD19000C7E791 /* AlbumCell.swift */,
 				70C8D8FC2A0E389B00CEBC20 /* ArtistHeader.swift */,
+				70C8D9042A0E5F6300CEBC20 /* SongCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 			files = (
 				705657802A0D4F3B00C7E791 /* HomeController.swift in Sources */,
 				7056577C2A0D4F3B00C7E791 /* AppDelegate.swift in Sources */,
+				70C8D9012A0E5DA100CEBC20 /* AlbumDetailController.swift in Sources */,
 				705657C52A0DD9CF00C7E791 /* AlbumViewModel.swift in Sources */,
 				705657B72A0DB63200C7E791 /* ArtistListController.swift in Sources */,
 				7056579D2A0D626200C7E791 /* MainTabController.swift in Sources */,
@@ -274,6 +281,7 @@
 				70C8D8FF2A0E3A0100CEBC20 /* ArtistHeaderViewModel.swift in Sources */,
 				705657AC2A0D9D8800C7E791 /* Category.swift in Sources */,
 				705657BD2A0DC42000C7E791 /* ArtistCell.swift in Sources */,
+				70C8D9052A0E5F6300CEBC20 /* SongCell.swift in Sources */,
 				705657AF2A0D9DD100C7E791 /* DeezerService.swift in Sources */,
 				705657B92A0DBE8700C7E791 /* Artist.swift in Sources */,
 				7056579B2A0D51C600C7E791 /* UIView+Extensions.swift in Sources */,

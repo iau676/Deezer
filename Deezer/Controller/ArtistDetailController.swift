@@ -101,7 +101,9 @@ extension ArtistDetailController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("DEBUG::title=\(albums[indexPath.row].title)")
+        let album = albums[indexPath.row]
+        let controller = AlbumDetailController(album: album)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
