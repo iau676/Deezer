@@ -21,6 +21,10 @@
 		705657AF2A0D9DD100C7E791 /* DeezerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657AE2A0D9DD100C7E791 /* DeezerService.swift */; };
 		705657B22A0DA27F00C7E791 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657B12A0DA27F00C7E791 /* CategoryViewModel.swift */; };
 		705657B52A0DADFB00C7E791 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 705657B42A0DADFB00C7E791 /* SDWebImage */; };
+		705657B72A0DB63200C7E791 /* ArtistListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657B62A0DB63200C7E791 /* ArtistListController.swift */; };
+		705657B92A0DBE8700C7E791 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657B82A0DBE8700C7E791 /* Artist.swift */; };
+		705657BB2A0DC1C200C7E791 /* ArtistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657BA2A0DC1C200C7E791 /* ArtistViewModel.swift */; };
+		705657BD2A0DC42000C7E791 /* ArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657BC2A0DC42000C7E791 /* ArtistCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +43,10 @@
 		705657AB2A0D9D8800C7E791 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		705657AE2A0D9DD100C7E791 /* DeezerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeezerService.swift; sourceTree = "<group>"; };
 		705657B12A0DA27F00C7E791 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		705657B62A0DB63200C7E791 /* ArtistListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistListController.swift; sourceTree = "<group>"; };
+		705657B82A0DBE8700C7E791 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		705657BA2A0DC1C200C7E791 /* ArtistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistViewModel.swift; sourceTree = "<group>"; };
+		705657BC2A0DC42000C7E791 /* ArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +95,9 @@
 		705657962A0D4FD400C7E791 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7056577F2A0D4F3B00C7E791 /* HomeController.swift */,
 				7056579C2A0D626200C7E791 /* MainTabController.swift */,
+				7056577F2A0D4F3B00C7E791 /* HomeController.swift */,
+				705657B62A0DB63200C7E791 /* ArtistListController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -126,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				705657AB2A0D9D8800C7E791 /* Category.swift */,
+				705657B82A0DBE8700C7E791 /* Artist.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -134,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				705657A72A0D7B7C00C7E791 /* CategoryCell.swift */,
+				705657BC2A0DC42000C7E791 /* ArtistCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -150,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				705657B12A0DA27F00C7E791 /* CategoryViewModel.swift */,
+				705657BA2A0DC1C200C7E791 /* ArtistViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -232,15 +244,19 @@
 			files = (
 				705657802A0D4F3B00C7E791 /* HomeController.swift in Sources */,
 				7056577C2A0D4F3B00C7E791 /* AppDelegate.swift in Sources */,
+				705657B72A0DB63200C7E791 /* ArtistListController.swift in Sources */,
 				7056579D2A0D626200C7E791 /* MainTabController.swift in Sources */,
 				705657B22A0DA27F00C7E791 /* CategoryViewModel.swift in Sources */,
 				7056579F2A0D63AB00C7E791 /* UIImage+Extensions.swift in Sources */,
 				705657A12A0D650B00C7E791 /* Constants.swift in Sources */,
 				705657AC2A0D9D8800C7E791 /* Category.swift in Sources */,
+				705657BD2A0DC42000C7E791 /* ArtistCell.swift in Sources */,
 				705657AF2A0D9DD100C7E791 /* DeezerService.swift in Sources */,
+				705657B92A0DBE8700C7E791 /* Artist.swift in Sources */,
 				7056579B2A0D51C600C7E791 /* UIView+Extensions.swift in Sources */,
 				705657862A0D4F3B00C7E791 /* Deezer.xcdatamodeld in Sources */,
 				705657A82A0D7B7C00C7E791 /* CategoryCell.swift in Sources */,
+				705657BB2A0DC1C200C7E791 /* ArtistViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
