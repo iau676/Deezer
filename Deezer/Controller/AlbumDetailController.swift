@@ -15,6 +15,14 @@ final class AlbumDetailController: UIViewController {
     
     private let album: Album
     
+    private var songs = [Song]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.songCV.reloadData()
+            }
+        }
+    }
+    
     private var songCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -38,6 +46,15 @@ final class AlbumDetailController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
+        fetchSongs()
+    }
+    
+    //MARK: - API
+    
+    private func fetchSongs() {
+        DeezerService.fetchSongs(withAlbumId: album.id) { songs in
+            self.songs = songs
+        }
     }
     
     //MARK: - Helpers
@@ -63,11 +80,13 @@ final class AlbumDetailController: UIViewController {
 extension AlbumDetailController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return songs.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SongCell
+        let song = songs[indexPath.row]
+        cell.viewModel = SongViewModel(song: song)
         cell.delegate = self
         return cell
     }
@@ -89,7 +108,7 @@ extension AlbumDetailController: UICollectionViewDelegateFlowLayout {
 //MARK: - SongCellDelegate
 
 extension AlbumDetailController: SongCellDelegate {
-    func handleLike() {
-        print("DEBUG::handleLike")
+    func handleLike(song: Song) {
+        print("DEBUG::\(song.title ?? "")")
     }
 }

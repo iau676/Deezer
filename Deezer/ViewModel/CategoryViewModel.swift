@@ -12,11 +12,11 @@ struct CategoryViewModel {
     private let category: Category
     
     var categoryName: String {
-        return category.name
+        return category.name ?? "Category"
     }
     
     var pictureMediumUrl: URL? {
-        return URL(string: category.pictureMedium)
+        return URL(string: category.pictureMedium ?? "")
     }
     
     init(category: Category) {

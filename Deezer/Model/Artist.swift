@@ -21,12 +21,12 @@ struct ArtistResponse: Codable {
 
 struct Artist: Codable {
     let id: Int
-    let name: String
-    let picture: String
-    let pictureSmall, pictureMedium, pictureBig, pictureXl: String
-    let radio: Bool
-    let tracklist: String
-    let type: String
+    let name: String?
+    let picture: String?
+    let pictureSmall, pictureMedium, pictureBig, pictureXl: String?
+    let radio: Bool?
+    let tracklist: String?
+    let type: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name, picture

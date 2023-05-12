@@ -22,12 +22,12 @@ struct AlbumResponse: Codable {
 // MARK: - Datum
 struct Album: Codable {
     let id: Int
-    let title: String
-    let link, cover: String
+    let title: String?
+    let link, cover: String?
     let coverSmall, coverMedium, coverBig, coverXl: String?
     let md5Image: String?
     let genreID, fans: Int?
-    let releaseDate, recordType: String
+    let releaseDate, recordType: String?
     let tracklist: String?
     let explicitLyrics: Bool?
     let type: String?

@@ -9,14 +9,20 @@ import UIKit
 import SDWebImage
 
 protocol SongCellDelegate: AnyObject {
-    func handleLike()
+    func handleLike(song: Song)
 }
 
 final class SongCell: UICollectionViewCell {
     
-    weak var delegate: SongCellDelegate?
-    
     //MARK: - Properties
+        
+    var viewModel: SongViewModel? {
+        didSet {
+            configure()
+        }
+    }
+    
+    weak var delegate: SongCellDelegate?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -96,7 +102,17 @@ final class SongCell: UICollectionViewCell {
     //MARK: - Selectors
     
     @objc private func likeButtonPressed() {
-        print("DEBUG::likeButtonPressed")
-        delegate?.handleLike()
+        guard let viewModel = viewModel else { return }
+        delegate?.handleLike(song: viewModel.songSelf)
+    }
+    
+    //MARK: - Helpers
+    
+    private func configure() {
+        guard let viewModel = viewModel else { return }
+        
+        titleLabel.text = viewModel.title
+        durationLabel.text = viewModel.durationStr
+        imageView.sd_setImage(with: viewModel.albumCover)
     }
 }

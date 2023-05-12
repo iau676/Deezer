@@ -12,7 +12,7 @@ struct ArtistHeaderViewModel {
     private let artist: Artist
 
     var pictureXl: URL? {
-        return URL(string: artist.pictureXl)
+        return URL(string: artist.pictureXl ?? "")
     }
     
     init(artist: Artist) {

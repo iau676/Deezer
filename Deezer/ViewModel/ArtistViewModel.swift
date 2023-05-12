@@ -12,11 +12,11 @@ struct ArtistViewModel {
     private let artist: Artist
     
     var artistName: String {
-        return artist.name
+        return artist.name ?? "Artist"
     }
 
     var pictureMediumUrl: URL? {
-        return URL(string: artist.pictureMedium)
+        return URL(string: artist.pictureMedium ?? "")
     }
     
     init(artist: Artist) {

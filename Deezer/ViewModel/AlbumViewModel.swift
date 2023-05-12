@@ -12,15 +12,15 @@ struct AlbumViewModel {
     private let album: Album
     
     var albumTitle: String {
-        return album.title
+        return album.title ?? "Title"
     }
     
     var cover: URL? {
-        return URL(string: album.cover)
+        return URL(string: album.cover ?? "")
     }
     
     var releaseDate: String {
-        return dateToString(date: stringToDate(dateString: album.releaseDate))
+        return dateToString(date: stringToDate(dateString: album.releaseDate ?? ""))
     }
     
     init(album: Album) {

@@ -21,10 +21,10 @@ struct CategoryResponse: Codable {
 
 struct Category: Codable {
     let id: Int
-    let name: String
-    let picture: String
-    let pictureSmall, pictureMedium, pictureBig, pictureXl: String
-    let type: TypeEnum
+    let name: String?
+    let picture: String?
+    let pictureSmall, pictureMedium, pictureBig, pictureXl: String?
+    let type: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name, picture
@@ -34,8 +34,4 @@ struct Category: Codable {
         case pictureXl = "picture_xl"
         case type
     }
-}
-
-enum TypeEnum: String, Codable {
-    case genre = "genre"
 }
