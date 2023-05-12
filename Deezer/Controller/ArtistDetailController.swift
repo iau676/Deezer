@@ -1,5 +1,5 @@
 //
-//  CategoryDetailController.swift
+//  ArtistDetailController.swift
 //  Deezer
 //
 //  Created by ibrahim uysal on 12.05.2023.
@@ -7,34 +7,34 @@
 
 import UIKit
 
-private let reuseIdentifier = "ArtistCell"
+private let reuseIdentifier = "AlbumCell"
 
-final class ArtistListController: UIViewController {
+final class ArtistDetailController: UIViewController {
     
     //MARK: - Properties
     
-    private let category: Category
+    private let artist: Artist
     
-    private var artists = [Artist]() {
+    private var albums = [Album]() {
         didSet {
             DispatchQueue.main.async {
-                self.artistCV.reloadData()
+                self.albumCV.reloadData()
             }
         }
     }
     
-    private var artistCV: UICollectionView = {
+    private var albumCV: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 8
-        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        layout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
-
+    
     //MARK: - Lifecycle
     
-    init(category: Category) {
-        self.category = category
+    init(artist: Artist) {
+        self.artist = artist
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -46,62 +46,60 @@ final class ArtistListController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
-        fetchArtists()
+        fetchAlbums()
     }
     
     //MARK: - API
     
-    private func fetchArtists() {
-        DeezerService.fetchArtists(withId: category.id) { artists in
-            self.artists = artists
+    private func fetchAlbums() {
+        DeezerService.fetchAlbums(withArtistId: artist.id) { albums in
+            self.albums = albums
         }
     }
     
     //MARK: - Helpers
     
     private func style() {
-        title = category.name
+        title = artist.name
         view.backgroundColor = .systemGroupedBackground
         
-        artistCV.delegate = self
-        artistCV.dataSource = self
-        artistCV.backgroundColor = .clear
-        artistCV.register(ArtistCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        albumCV.delegate = self
+        albumCV.dataSource = self
+        albumCV.backgroundColor = .clear
+        albumCV.register(AlbumCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     private func layout() {
-        view.addSubview(artistCV)
-        artistCV.fillSuperview()
+        view.addSubview(albumCV)
+        albumCV.fillSuperview()
     }
 }
 
 //MARK: - UICollectionViewDelegate/DataSource
 
-extension ArtistListController: UICollectionViewDataSource {
+extension ArtistDetailController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return artists.count
+        return albums.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ArtistCell
-        let artist = artists[indexPath.row]
-        cell.viewModel = ArtistViewModel(artist: artist)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! AlbumCell
+        let album = albums[indexPath.row]
+        cell.viewModel = AlbumViewModel(album: album)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let artist = artists[indexPath.row]
-        let controller = ArtistDetailController(artist: artist)
-        navigationController?.pushViewController(controller, animated: true)
+        print("DEBUG::title=\(albums[indexPath.row].title)")
     }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
 
-extension ArtistListController: UICollectionViewDelegateFlowLayout {
+extension ArtistDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (view.bounds.width-3*8)/2
-        return CGSize(width: cellWidth, height: cellWidth)
+        let cellWidth = (view.bounds.width-3*8)
+        return CGSize(width: cellWidth, height: 100)
     }
 }

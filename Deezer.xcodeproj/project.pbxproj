@@ -25,6 +25,10 @@
 		705657B92A0DBE8700C7E791 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657B82A0DBE8700C7E791 /* Artist.swift */; };
 		705657BB2A0DC1C200C7E791 /* ArtistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657BA2A0DC1C200C7E791 /* ArtistViewModel.swift */; };
 		705657BD2A0DC42000C7E791 /* ArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657BC2A0DC42000C7E791 /* ArtistCell.swift */; };
+		705657BF2A0DCF5C00C7E791 /* ArtistDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657BE2A0DCF5C00C7E791 /* ArtistDetailController.swift */; };
+		705657C12A0DD19000C7E791 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657C02A0DD19000C7E791 /* AlbumCell.swift */; };
+		705657C32A0DD93400C7E791 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657C22A0DD93400C7E791 /* Album.swift */; };
+		705657C52A0DD9CF00C7E791 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705657C42A0DD9CF00C7E791 /* AlbumViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,10 @@
 		705657B82A0DBE8700C7E791 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		705657BA2A0DC1C200C7E791 /* ArtistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistViewModel.swift; sourceTree = "<group>"; };
 		705657BC2A0DC42000C7E791 /* ArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCell.swift; sourceTree = "<group>"; };
+		705657BE2A0DCF5C00C7E791 /* ArtistDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDetailController.swift; sourceTree = "<group>"; };
+		705657C02A0DD19000C7E791 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		705657C22A0DD93400C7E791 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		705657C42A0DD9CF00C7E791 /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,7 @@
 				7056579C2A0D626200C7E791 /* MainTabController.swift */,
 				7056577F2A0D4F3B00C7E791 /* HomeController.swift */,
 				705657B62A0DB63200C7E791 /* ArtistListController.swift */,
+				705657BE2A0DCF5C00C7E791 /* ArtistDetailController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -136,6 +145,7 @@
 			children = (
 				705657AB2A0D9D8800C7E791 /* Category.swift */,
 				705657B82A0DBE8700C7E791 /* Artist.swift */,
+				705657C22A0DD93400C7E791 /* Album.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -145,6 +155,7 @@
 			children = (
 				705657A72A0D7B7C00C7E791 /* CategoryCell.swift */,
 				705657BC2A0DC42000C7E791 /* ArtistCell.swift */,
+				705657C02A0DD19000C7E791 /* AlbumCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -162,6 +173,7 @@
 			children = (
 				705657B12A0DA27F00C7E791 /* CategoryViewModel.swift */,
 				705657BA2A0DC1C200C7E791 /* ArtistViewModel.swift */,
+				705657C42A0DD9CF00C7E791 /* AlbumViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -244,9 +256,13 @@
 			files = (
 				705657802A0D4F3B00C7E791 /* HomeController.swift in Sources */,
 				7056577C2A0D4F3B00C7E791 /* AppDelegate.swift in Sources */,
+				705657C52A0DD9CF00C7E791 /* AlbumViewModel.swift in Sources */,
 				705657B72A0DB63200C7E791 /* ArtistListController.swift in Sources */,
 				7056579D2A0D626200C7E791 /* MainTabController.swift in Sources */,
+				705657C12A0DD19000C7E791 /* AlbumCell.swift in Sources */,
+				705657C32A0DD93400C7E791 /* Album.swift in Sources */,
 				705657B22A0DA27F00C7E791 /* CategoryViewModel.swift in Sources */,
+				705657BF2A0DCF5C00C7E791 /* ArtistDetailController.swift in Sources */,
 				7056579F2A0D63AB00C7E791 /* UIImage+Extensions.swift in Sources */,
 				705657A12A0D650B00C7E791 /* Constants.swift in Sources */,
 				705657AC2A0D9D8800C7E791 /* Category.swift in Sources */,

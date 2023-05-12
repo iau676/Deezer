@@ -36,4 +36,18 @@ struct DeezerService {
             dataTask.resume()
         }
     }
+    
+    static func fetchAlbums(withArtistId id: Int, completion: @escaping([Album]) -> Void) {
+        if let url = URL(string: "https://api.deezer.com/artist/\(id)/albums") {
+            let dataTask = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
+                if error == nil {
+                    if let data = data {
+                        let albumResponse = try! JSONDecoder().decode(AlbumResponse.self, from: data)
+                        completion(albumResponse.albums)
+                    }
+                }
+            })
+            dataTask.resume()
+        }
+    }
 }
