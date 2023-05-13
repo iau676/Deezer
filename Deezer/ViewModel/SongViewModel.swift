@@ -5,7 +5,7 @@
 //  Created by ibrahim uysal on 12.05.2023.
 //
 
-import Foundation
+import UIKit
 
 struct SongViewModel {
     
@@ -25,6 +25,10 @@ struct SongViewModel {
     
     var albumCover: URL? {
         return URL(string: song.album.cover ?? "")
+    }
+    
+    var favoriteImage: UIImage? {
+        return song.isFavorite ? Images.heartFill : Images.heart
     }
     
     init(song: Song) {

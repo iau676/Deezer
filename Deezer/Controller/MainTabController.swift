@@ -36,8 +36,8 @@ final class MainTabController: UITabBarController {
                                               selectedImage: UIImage?,
                                               rootViewController: UIViewController) -> UINavigationController {
         let nav = UINavigationController(rootViewController: rootViewController)
-        if let image = image?.imageResized(to: CGSize(width: 24, height: 24)),
-            let selectedImage = selectedImage?.imageResized(to: CGSize(width: 24, height: 24)) {
+        if let image = image,
+            let selectedImage = selectedImage {
             nav.tabBarItem.image = image
             nav.tabBarItem.selectedImage = selectedImage
             nav.navigationBar.tintColor = .blue

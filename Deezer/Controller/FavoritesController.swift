@@ -103,10 +103,12 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout {
 
 extension FavoritesController: SongCellDelegate {
     func addFavorite(song: Song) {
-//        DeezerBrain.shared.addFavorite(song: song)
+        DeezerBrain.shared.addFavorite(song: song)
+        song.isFavorite = true
     }
     
     func deleteFavorite(song: Song) {
-//        DeezerBrain.shared.deleteFavorite(song: song)
+        DeezerBrain.shared.deleteFavorite(song: song)
+        song.isFavorite = false
     }
 }

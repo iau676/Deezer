@@ -42,8 +42,7 @@ final class SongCell: UICollectionViewCell {
     
     private lazy var favoriteButton: UIButton = {
        let button = UIButton()
-        let image = Images.heart?.imageResized(to: CGSize(width: 32, height: 32)).withTintColor(.lightGray)
-        button.setImage(image, for: .normal)
+        button.setImage(Images.heart, for: .normal)
         button.addTarget(self, action: #selector(favoriteButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -104,7 +103,15 @@ final class SongCell: UICollectionViewCell {
     
     @objc private func favoriteButtonPressed() {
         guard let viewModel = viewModel else { return }
-        delegate?.addFavorite(song: viewModel.songSelf)
+        let song = viewModel.songSelf
+        
+        if song.isFavorite {
+            delegate?.deleteFavorite(song: song)
+            favoriteButton.setImage(Images.heart, for: .normal)
+        } else {
+            delegate?.addFavorite(song: song)
+            favoriteButton.setImage(Images.heartFill, for: .normal)
+        }
     }
     
     //MARK: - Helpers
@@ -115,5 +122,6 @@ final class SongCell: UICollectionViewCell {
         titleLabel.text = viewModel.title
         durationLabel.text = viewModel.durationStr
         imageView.sd_setImage(with: viewModel.albumCover)
+        favoriteButton.setImage(viewModel.favoriteImage, for: .normal)
     }
 }

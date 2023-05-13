@@ -92,7 +92,7 @@ struct SongResponse: Codable {
 
 // MARK: - Song
 
-struct Song: Codable {
+class Song: Codable {
     let id: Int
     let readable: Bool?
     let title, titleShort, titleVersion: String?
@@ -108,6 +108,7 @@ struct Song: Codable {
     let type: String?
     
     var isPlaying: Bool = false
+    var isFavorite: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case id, readable, title
@@ -139,5 +140,6 @@ struct Song: Codable {
         self.artist = nil
         self.album = album
         self.type = nil
+        self.isFavorite = true
     }
 }
