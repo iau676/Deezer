@@ -73,7 +73,7 @@ extension FavoritesController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SongCell
         let song = favorites[indexPath.row]
         cell.viewModel = SongViewModel(song: song)
-//        cell.delegate = self
+        cell.delegate = self
         return cell
     }
     
@@ -102,7 +102,11 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout {
 //MARK: - SongCellDelegate
 
 extension FavoritesController: SongCellDelegate {
-    func handleLike(song: Song) {
+    func addFavorite(song: Song) {
 //        DeezerBrain.shared.addFavorite(song: song)
+    }
+    
+    func deleteFavorite(song: Song) {
+//        DeezerBrain.shared.deleteFavorite(song: song)
     }
 }

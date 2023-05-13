@@ -116,7 +116,11 @@ extension AlbumDetailController: UICollectionViewDelegateFlowLayout {
 //MARK: - SongCellDelegate
 
 extension AlbumDetailController: SongCellDelegate {
-    func handleLike(song: Song) {
-        DeezerBrain.shared.addFavorite(song: song)
+    func addFavorite(song: Song) {
+//        DeezerBrain.shared.addFavorite(song: song)
+    }
+    
+    func deleteFavorite(song: Song) {
+//        DeezerBrain.shared.deleteFavorite(song: song)
     }
 }

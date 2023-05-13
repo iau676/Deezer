@@ -11,7 +11,10 @@ import CoreData
 struct DeezerBrain {
         
     static var shared = DeezerBrain()
+    
     var favorites = [Song]()
+    var favoriteSongs = [FavoriteSong]()
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     mutating func addFavorite(song: Song) {
@@ -26,16 +29,21 @@ struct DeezerBrain {
         saveContext()
     }
     
-    func delete(favoriteSong: FavoriteSong) {
-        context.delete(favoriteSong)
-        saveContext()
+    func deleteFavorite(song: Song) {
+        for i in 0..<favorites.count {
+            if favorites[i].id == song.id {
+                context.delete(favoriteSongs[i])
+                saveContext()
+                break
+            }
+        }
     }
     
     mutating func loadFavorites(with request: NSFetchRequest<FavoriteSong> = FavoriteSong.fetchRequest()){
         do {
             request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
-            let array = try context.fetch(request)
-            convertToSong(favoriteSongs: array)
+            favoriteSongs = try context.fetch(request)
+            convertToSong(favoriteSongs: favoriteSongs)
         } catch {
            print("Error fetching data from context \(error)")
         }

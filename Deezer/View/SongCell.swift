@@ -9,7 +9,8 @@ import UIKit
 import SDWebImage
 
 protocol SongCellDelegate: AnyObject {
-    func handleLike(song: Song)
+    func addFavorite(song: Song)
+    func deleteFavorite(song: Song)
 }
 
 final class SongCell: UICollectionViewCell {
@@ -39,11 +40,11 @@ final class SongCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var likeButton: UIButton = {
+    private lazy var favoriteButton: UIButton = {
        let button = UIButton()
         let image = Images.heart?.imageResized(to: CGSize(width: 32, height: 32)).withTintColor(.lightGray)
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(likeButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(favoriteButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -80,9 +81,9 @@ final class SongCell: UICollectionViewCell {
         addSubview(borderView)
         borderView.fillSuperview()
         
-        addSubview(likeButton)
-        likeButton.setDimensions(width: 32, height: 32)
-        likeButton.anchor(top: topAnchor, right: rightAnchor,
+        addSubview(favoriteButton)
+        favoriteButton.setDimensions(width: 32, height: 32)
+        favoriteButton.anchor(top: topAnchor, right: rightAnchor,
                           paddingTop: 16, paddingRight: 16)
         
         let textStack = UIStackView(arrangedSubviews: [titleLabel, durationLabel])
@@ -91,7 +92,7 @@ final class SongCell: UICollectionViewCell {
         
         addSubview(textStack)
         textStack.centerY(inView: self)
-        textStack.anchor(left: imageView.rightAnchor, right: likeButton.leftAnchor,
+        textStack.anchor(left: imageView.rightAnchor, right: favoriteButton.leftAnchor,
                          paddingLeft: 16, paddingRight: 16)
     }
     
@@ -101,9 +102,9 @@ final class SongCell: UICollectionViewCell {
     
     //MARK: - Selectors
     
-    @objc private func likeButtonPressed() {
+    @objc private func favoriteButtonPressed() {
         guard let viewModel = viewModel else { return }
-        delegate?.handleLike(song: viewModel.songSelf)
+        delegate?.addFavorite(song: viewModel.songSelf)
     }
     
     //MARK: - Helpers
