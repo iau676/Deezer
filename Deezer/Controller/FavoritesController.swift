@@ -29,6 +29,8 @@ final class FavoritesController: UIViewController {
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
     
+    private let refresher = UIRefreshControl()
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -39,8 +41,15 @@ final class FavoritesController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        refreshFavorites()
+    }
+    
+    //MARK: - Selectors
+    
+    @objc private func refreshFavorites() {
         DeezerBrain.shared.loadFavorites()
         favorites = DeezerBrain.shared.favorites
+        refresher.endRefreshing()
     }
     
     //MARK: - Helpers
@@ -53,6 +62,9 @@ final class FavoritesController: UIViewController {
         songCV.dataSource = self
         songCV.backgroundColor = .clear
         songCV.register(SongCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        
+        refresher.addTarget(self, action: #selector(refreshFavorites), for: .valueChanged)
+        songCV.refreshControl = refresher
     }
     
     private func layout() {
