@@ -105,6 +105,8 @@ struct Song: Codable {
     let artist: Artist
     let album: Album
     let type: String?
+    
+    var isPlaying: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case id, readable, title

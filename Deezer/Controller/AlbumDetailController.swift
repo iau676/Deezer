@@ -92,7 +92,15 @@ extension AlbumDetailController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("DEBUG::index=\(indexPath.row)")
+        let song = songs[indexPath.row]
+        if song.isPlaying {
+            Player.shared.player?.pause()
+            songs[indexPath.row].isPlaying = false
+        } else {
+            Player.shared.playSound(withUrl: song.preview)
+            for i in 0..<songs.count { songs[i].isPlaying = false }
+            songs[indexPath.row].isPlaying = true
+        }
     }
 }
 
