@@ -39,6 +39,15 @@ struct DeezerBrain {
         }
     }
     
+    func checkIfFavorite(song: Song) -> Bool {
+        for i in 0..<favorites.count {
+            if favorites[i].id == song.id {
+                return true
+            }
+        }
+        return false
+    }
+    
     mutating func loadFavorites(with request: NSFetchRequest<FavoriteSong> = FavoriteSong.fetchRequest()){
         do {
             request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]

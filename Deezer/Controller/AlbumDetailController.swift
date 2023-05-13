@@ -49,6 +49,11 @@ final class AlbumDetailController: UIViewController {
         fetchSongs()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DeezerBrain.shared.loadFavorites()
+    }
+    
     //MARK: - API
     
     private func fetchSongs() {
@@ -86,6 +91,7 @@ extension AlbumDetailController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SongCell
         let song = songs[indexPath.row]
+        song.isFavorite = DeezerBrain.shared.checkIfFavorite(song: song)
         cell.viewModel = SongViewModel(song: song)
         cell.delegate = self
         return cell
