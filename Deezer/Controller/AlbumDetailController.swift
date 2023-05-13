@@ -117,6 +117,6 @@ extension AlbumDetailController: UICollectionViewDelegateFlowLayout {
 
 extension AlbumDetailController: SongCellDelegate {
     func handleLike(song: Song) {
-        print("DEBUG::\(song.title ?? "")")
+        DeezerBrain.shared.addFavorite(song: song)
     }
 }
