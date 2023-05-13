@@ -51,8 +51,7 @@ final class AlbumDetailController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DeezerBrain.shared.loadFavorites()
-        songCV.reloadData()
+        refreshFavorites()
     }
     
     //MARK: - API
@@ -78,6 +77,11 @@ final class AlbumDetailController: UIViewController {
     private func layout() {
         view.addSubview(songCV)
         songCV.fillSuperview()
+    }
+    
+    private func refreshFavorites() {
+        DeezerBrain.shared.loadFavorites()
+        songCV.reloadData()
     }
 }
 
@@ -108,6 +112,7 @@ extension AlbumDetailController: UICollectionViewDataSource {
             for i in 0..<songs.count { songs[i].isPlaying = false }
             songs[indexPath.row].isPlaying = true
         }
+        refreshFavorites()
     }
 }
 

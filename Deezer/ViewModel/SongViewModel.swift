@@ -31,6 +31,10 @@ struct SongViewModel {
         return song.isFavorite ? Images.heartFill : Images.heart
     }
     
+    var isPlaying: Bool {
+        return song.isPlaying
+    }
+    
     init(song: Song) {
         self.song = song
     }

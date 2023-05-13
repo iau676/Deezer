@@ -99,6 +99,7 @@ extension FavoritesController: UICollectionViewDataSource {
             for i in 0..<favorites.count { favorites[i].isPlaying = false }
             favorites[indexPath.row].isPlaying = true
         }
+        songCV.reloadData()
     }
 }
 

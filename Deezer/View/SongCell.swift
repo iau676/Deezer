@@ -71,6 +71,7 @@ final class SongCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = .clear
+        layer.cornerRadius = 8
         
         addSubview(imageView)
         imageView.setDimensions(width: 100, height: 100)
@@ -125,5 +126,6 @@ final class SongCell: UICollectionViewCell {
         durationLabel.text = viewModel.durationStr
         imageView.sd_setImage(with: viewModel.albumCover)
         favoriteButton.setImage(viewModel.favoriteImage, for: .normal)
+        backgroundColor = viewModel.isPlaying ? .systemBlue.withAlphaComponent(0.3) : .clear
     }
 }
