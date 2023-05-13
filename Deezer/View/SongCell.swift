@@ -112,6 +112,8 @@ final class SongCell: UICollectionViewCell {
             delegate?.addFavorite(song: song)
             favoriteButton.setImage(Images.heartFill, for: .normal)
         }
+        
+        favoriteButton.bounce()
     }
     
     //MARK: - Helpers

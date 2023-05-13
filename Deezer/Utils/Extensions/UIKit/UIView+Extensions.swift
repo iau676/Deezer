@@ -7,6 +7,8 @@
 
 import UIKit
 
+//MARK: - Layout
+
 extension UIView {
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,
@@ -84,4 +86,21 @@ extension UIView {
         anchor(top: view.topAnchor, left: view.leftAnchor,
                bottom: view.bottomAnchor, right: view.rightAnchor)
     }
+}
+
+//MARK: - Animate
+
+extension UIView {
+    func bounce() {
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.curveEaseOut, .allowUserInteraction]) { [weak self] in
+            self?.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+        } completion: { _ in
+            UIView.animate(withDuration: 0.15, delay: 0, options: [.curveEaseInOut, .allowUserInteraction]) { [weak self] in
+                self?.transform = CGAffineTransform.identity
+            } completion: { _ in
+                
+            }
+        }
+    }
+
 }

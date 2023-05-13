@@ -52,6 +52,7 @@ final class AlbumDetailController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DeezerBrain.shared.loadFavorites()
+        songCV.reloadData()
     }
     
     //MARK: - API
