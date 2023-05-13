@@ -47,4 +47,23 @@ struct Album: Codable {
         case explicitLyrics = "explicit_lyrics"
         case type
     }
+    
+    init(id: Int, cover: String?) {
+        self.id = id
+        self.title = nil
+        self.link = nil
+        self.cover = cover
+        self.coverSmall = nil
+        self.coverMedium = nil
+        self.coverBig = nil
+        self.coverXl = nil
+        self.md5Image = nil
+        self.genreID = nil
+        self.fans = nil
+        self.releaseDate = nil
+        self.recordType = nil
+        self.tracklist = nil
+        self.explicitLyrics = nil
+        self.type = nil
+    }
 }

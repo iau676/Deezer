@@ -94,15 +94,16 @@ struct SongResponse: Codable {
 
 struct Song: Codable {
     let id: Int
-    let readable: Bool
+    let readable: Bool?
     let title, titleShort, titleVersion: String?
-    let link: String
-    let duration, rank: Int
-    let explicitLyrics: Bool
-    let explicitContentLyrics, explicitContentCover: Int
-    let preview: String
+    let link: String?
+    let duration: Int
+    let rank: Int?
+    let explicitLyrics: Bool?
+    let explicitContentLyrics, explicitContentCover: Int?
+    let preview: String?
     let md5Image: String?
-    let artist: Artist
+    let artist: Artist?
     let album: Album
     let type: String?
     
@@ -119,5 +120,24 @@ struct Song: Codable {
         case preview
         case md5Image = "md5_image"
         case artist, album, type
+    }
+    
+    init(id: Int64, title: String?, duration: Int64, preview: String?, album: Album) {
+        self.id = Int(id)
+        self.readable = nil
+        self.title = title
+        self.titleShort = nil
+        self.titleVersion = nil
+        self.link = nil
+        self.duration = Int(duration)
+        self.rank = nil
+        self.explicitLyrics = nil
+        self.explicitContentLyrics = nil
+        self.explicitContentCover = nil
+        self.preview = preview
+        self.md5Image = nil
+        self.artist = nil
+        self.album = album
+        self.type = nil
     }
 }

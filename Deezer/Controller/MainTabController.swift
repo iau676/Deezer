@@ -26,10 +26,10 @@ final class MainTabController: UITabBarController {
                                                 selectedImage: Images.noteFill,
                                                 rootViewController: HomeController())
         
-        let likes = templateNavigationController(image: Images.heart,
-                                                 selectedImage: Images.heartFill,
-                                                 rootViewController: HomeController())
-        viewControllers = [home, likes]
+        let favorites = templateNavigationController(image: Images.heart,
+                                                     selectedImage: Images.heartFill,
+                                                     rootViewController: FavoritesController())
+        viewControllers = [home, favorites]
     }
     
     private func templateNavigationController(image: UIImage?,

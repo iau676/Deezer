@@ -37,6 +37,7 @@
 		70C8D9072A0EB01F00CEBC20 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8D9062A0EB01F00CEBC20 /* Song.swift */; };
 		70C8D9092A0EC6C100CEBC20 /* SongViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8D9082A0EC6C100CEBC20 /* SongViewModel.swift */; };
 		70D4CCB42A0FA28D0091B69D /* DeezerBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D4CCB32A0FA28D0091B69D /* DeezerBrain.swift */; };
+		70D4CCB72A0FA6A80091B69D /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D4CCB62A0FA6A80091B69D /* FavoritesController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		70C8D9062A0EB01F00CEBC20 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		70C8D9082A0EC6C100CEBC20 /* SongViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewModel.swift; sourceTree = "<group>"; };
 		70D4CCB32A0FA28D0091B69D /* DeezerBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeezerBrain.swift; sourceTree = "<group>"; };
+		70D4CCB62A0FA6A80091B69D /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				705657B62A0DB63200C7E791 /* ArtistListController.swift */,
 				705657BE2A0DCF5C00C7E791 /* ArtistDetailController.swift */,
 				70C8D9002A0E5DA100CEBC20 /* AlbumDetailController.swift */,
+				70D4CCB62A0FA6A80091B69D /* FavoritesController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				705657C32A0DD93400C7E791 /* Album.swift in Sources */,
 				705657B22A0DA27F00C7E791 /* CategoryViewModel.swift in Sources */,
 				705657BF2A0DCF5C00C7E791 /* ArtistDetailController.swift in Sources */,
+				70D4CCB72A0FA6A80091B69D /* FavoritesController.swift in Sources */,
 				7056579F2A0D63AB00C7E791 /* UIImage+Extensions.swift in Sources */,
 				705657A12A0D650B00C7E791 /* Constants.swift in Sources */,
 				70C8D9072A0EB01F00CEBC20 /* Song.swift in Sources */,

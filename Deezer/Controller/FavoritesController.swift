@@ -1,21 +1,19 @@
 //
-//  AlbumDetailController.swift
+//  FavoritesController.swift
 //  Deezer
 //
-//  Created by ibrahim uysal on 12.05.2023.
+//  Created by ibrahim uysal on 13.05.2023.
 //
 
 import UIKit
 
 private let cellIdentifier = "SongCell"
 
-final class AlbumDetailController: UIViewController {
+final class FavoritesController: UIViewController {
     
     //MARK: - Properties
     
-    private let album: Album
-    
-    private var songs = [Song]() {
+    private var favorites = [Song]() {
         didSet {
             DispatchQueue.main.async {
                 self.songCV.reloadData()
@@ -33,34 +31,22 @@ final class AlbumDetailController: UIViewController {
     
     //MARK: - Lifecycle
     
-    init(album: Album) {
-        self.album = album
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
         layout()
-        fetchSongs()
     }
     
-    //MARK: - API
-    
-    private func fetchSongs() {
-        DeezerService.fetchSongs(withAlbumId: album.id) { songs in
-            self.songs = songs
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DeezerBrain.shared.loadFavorites()
+        favorites = DeezerBrain.shared.favorites
     }
     
     //MARK: - Helpers
     
     private func style() {
-        title = album.title
+        title = "Favorites"
         view.backgroundColor = .systemGroupedBackground
         
         songCV.delegate = self
@@ -77,36 +63,36 @@ final class AlbumDetailController: UIViewController {
 
 //MARK: - UICollectionViewDelegate/DataSource
 
-extension AlbumDetailController: UICollectionViewDataSource {
+extension FavoritesController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return songs.count
+        return favorites.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SongCell
-        let song = songs[indexPath.row]
+        let song = favorites[indexPath.row]
         cell.viewModel = SongViewModel(song: song)
-        cell.delegate = self
+//        cell.delegate = self
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let song = songs[indexPath.row]
+        let song = favorites[indexPath.row]
         if song.isPlaying {
             Player.shared.player?.pause()
-            songs[indexPath.row].isPlaying = false
+            favorites[indexPath.row].isPlaying = false
         } else {
             Player.shared.playSound(withUrl: song.preview ?? "")
-            for i in 0..<songs.count { songs[i].isPlaying = false }
-            songs[indexPath.row].isPlaying = true
+            for i in 0..<favorites.count { favorites[i].isPlaying = false }
+            favorites[indexPath.row].isPlaying = true
         }
     }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
 
-extension AlbumDetailController: UICollectionViewDelegateFlowLayout {
+extension FavoritesController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (view.bounds.width-3*8)
         return CGSize(width: cellWidth, height: 100)
@@ -115,8 +101,8 @@ extension AlbumDetailController: UICollectionViewDelegateFlowLayout {
 
 //MARK: - SongCellDelegate
 
-extension AlbumDetailController: SongCellDelegate {
+extension FavoritesController: SongCellDelegate {
     func handleLike(song: Song) {
-        DeezerBrain.shared.addFavorite(song: song)
+//        DeezerBrain.shared.addFavorite(song: song)
     }
 }
