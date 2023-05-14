@@ -54,6 +54,11 @@ final class AlbumDetailController: UIViewController {
         refreshFavorites()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Player.shared.pause()
+    }
+    
     //MARK: - API
     
     private func fetchSongs() {
@@ -103,14 +108,8 @@ extension AlbumDetailController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let song = songs[indexPath.row]
-        if song.isPlaying {
-            Player.shared.player?.pause()
-            songs[indexPath.row].isPlaying = false
-        } else {
-            Player.shared.playSound(withUrl: song.preview ?? "")
-            for i in 0..<songs.count { songs[i].isPlaying = false }
-            songs[indexPath.row].isPlaying = true
+        Player.shared.handlePlay(songs: songs, index: indexPath.row) { songEnd in
+            self.refreshFavorites()
         }
         refreshFavorites()
     }

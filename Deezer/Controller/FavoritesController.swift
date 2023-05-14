@@ -44,6 +44,11 @@ final class FavoritesController: UIViewController {
         refreshFavorites()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Player.shared.pause()
+    }
+    
     //MARK: - Selectors
     
     @objc private func refreshFavorites() {
@@ -90,14 +95,8 @@ extension FavoritesController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let song = favorites[indexPath.row]
-        if song.isPlaying {
-            Player.shared.player?.pause()
-            favorites[indexPath.row].isPlaying = false
-        } else {
-            Player.shared.playSound(withUrl: song.preview ?? "")
-            for i in 0..<favorites.count { favorites[i].isPlaying = false }
-            favorites[indexPath.row].isPlaying = true
+        Player.shared.handlePlay(songs: favorites, index: indexPath.row) { songEnd in
+            self.songCV.reloadData()
         }
         songCV.reloadData()
     }
