@@ -30,6 +30,9 @@ final class MainTabController: UITabBarController {
                                                      selectedImage: Images.heartFill,
                                                      rootViewController: FavoritesController())
         viewControllers = [home, favorites]
+        
+        tabBar.items?[0].title = "Musics"
+        tabBar.items?[1].title = "Favorites"
     }
     
     private func templateNavigationController(image: UIImage?,

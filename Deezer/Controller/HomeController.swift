@@ -49,7 +49,7 @@ final class HomeController: UIViewController {
     //MARK: - Helpers
     
     private func style() {
-        title = "Categories"
+        title = "Musics"
         view.backgroundColor = .systemGroupedBackground
         
         categoryCV.delegate = self
