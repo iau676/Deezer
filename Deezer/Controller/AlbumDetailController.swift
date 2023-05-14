@@ -109,6 +109,7 @@ extension AlbumDetailController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         Player.shared.handlePlay(songs: songs, index: indexPath.row) { songEnd in
+            if songEnd { Player.shared.stopTimer() }
             self.refreshFavorites()
         }
         refreshFavorites()

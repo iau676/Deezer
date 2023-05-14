@@ -102,21 +102,4 @@ extension UIView {
             }
         }
     }
-    
-    func setWidthWithAnimation(_ h:CGFloat, animateTime:TimeInterval?=nil) {
-
-        if let c = self.constraints.first(where: { $0.firstAttribute == .width && $0.relation == .equal }) {
-            c.constant = CGFloat(h)
-
-            if let animateTime = animateTime {
-                UIView.animate(withDuration: animateTime, animations:{
-                    self.superview?.layoutIfNeeded()
-                })
-            }
-            else {
-                self.superview?.layoutIfNeeded()
-            }
-        }
-    }
-
 }

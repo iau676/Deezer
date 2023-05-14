@@ -16,6 +16,7 @@ struct Player {
     
     mutating func handlePlay(songs: [Song], index: Int, completion: @escaping(Bool) -> Void) {
         timeR.invalidate()
+        var timerCounter = 0
         
         let song = songs[index]
         if song.isPlaying {
@@ -23,12 +24,20 @@ struct Player {
             songs[index].isPlaying = false
         } else {
             playSound(withUrl: song.preview ?? "")
-            for i in 0..<songs.count { songs[i].isPlaying = false }
-            songs[index].isPlaying = true
+            songs.forEach { song in song.isPlaying = false }
+            song.isPlaying = true
+            song.currentSecond = 0
             
-            timeR = Timer.scheduledTimer(withTimeInterval: 30, repeats: false, block: { _ in
-                song.isPlaying = false
-                completion(true)
+            timeR = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+                timerCounter += 1
+                song.currentSecond = timerCounter
+                
+                if timerCounter == 30 {
+                    song.isPlaying = false
+                    completion(true)
+                } else {
+                    completion(false)
+                }
             })
         }
     }
@@ -43,5 +52,9 @@ struct Player {
     
     func pause() {
         player?.pause()
+    }
+    
+    func stopTimer() {
+        timeR.invalidate()
     }
 }

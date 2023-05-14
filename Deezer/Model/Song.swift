@@ -109,6 +109,7 @@ class Song: Codable {
     
     var isPlaying: Bool = false
     var isFavorite: Bool = false
+    var currentSecond: Int = 0
 
     enum CodingKeys: String, CodingKey {
         case id, readable, title

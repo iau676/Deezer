@@ -20,7 +20,7 @@ struct SongViewModel {
     }
     
     var durationStr: String {
-        return getDurationString(song.duration)
+        return isPlaying ? "Preview • \(30-currentSecond)" : getDurationString(song.duration)
     }
     
     var albumCover: URL? {
@@ -33,6 +33,10 @@ struct SongViewModel {
     
     var isPlaying: Bool {
         return song.isPlaying
+    }
+    
+    var currentSecond: Int {
+        return song.currentSecond
     }
     
     init(song: Song) {

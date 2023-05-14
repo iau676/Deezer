@@ -55,6 +55,7 @@ final class FavoritesController: UIViewController {
         DeezerBrain.shared.loadFavorites()
         favorites = DeezerBrain.shared.favorites
         refresher.endRefreshing()
+        Player.shared.pause()
     }
     
     //MARK: - Helpers
@@ -96,9 +97,10 @@ extension FavoritesController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         Player.shared.handlePlay(songs: favorites, index: indexPath.row) { songEnd in
+            if songEnd { Player.shared.stopTimer() }
             self.songCV.reloadData()
         }
-        songCV.reloadData()
+        self.songCV.reloadData()
     }
 }
 
