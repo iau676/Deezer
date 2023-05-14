@@ -20,8 +20,10 @@ final class ArtistCell: UICollectionViewCell {
     
     private let label: UILabel = {
         let label = UILabel()
-        label.textColor = .label
-        label.text = "Category"
+        label.textColor = .white
+        label.text = "Artist"
+        label.backgroundColor = .black.withAlphaComponent(0.5)
+        label.textAlignment = .center
         return label
     }()
     
@@ -56,8 +58,9 @@ final class ArtistCell: UICollectionViewCell {
         borderView.fillSuperview()
         
         addSubview(label)
-        label.centerX(inView: self)
-        label.anchor(bottom: bottomAnchor, paddingBottom: 16)
+        label.anchor(left: leftAnchor, bottom: bottomAnchor,
+                     right: rightAnchor, paddingLeft: 1,
+                     paddingBottom: 16, paddingRight: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {
