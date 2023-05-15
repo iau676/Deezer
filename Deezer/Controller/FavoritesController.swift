@@ -15,9 +15,7 @@ final class FavoritesController: UICollectionViewController {
     
     private var favorites = [Song]() {
         didSet {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+            collectionView.reloadData()
         }
     }
     
