@@ -9,32 +9,23 @@ import UIKit
 
 private let reuseIdentifier = "CategoryCell"
 
-final class HomeController: UIViewController {
+final class CategoryController: UICollectionViewController {
     
     //MARK: - Properties
     
     private var categories = [Category]() {
         didSet {
             DispatchQueue.main.async {
-                self.categoryCV.reloadData()
+                self.collectionView.reloadData()
             }
         }
     }
-    
-    private var categoryCV: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 8
-        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        return UICollectionView(frame: .zero, collectionViewLayout: layout)
-    }()
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        style()
-        layout()
+        configureUI()
         fetchCategories()
     }
     
@@ -48,37 +39,32 @@ final class HomeController: UIViewController {
     
     //MARK: - Helpers
     
-    private func style() {
+    private func configureUI() {
         title = "Musics"
         view.backgroundColor = .systemGroupedBackground
         
-        categoryCV.delegate = self
-        categoryCV.dataSource = self
-        categoryCV.backgroundColor = .clear
-        categoryCV.register(CategoryCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-    }
-    
-    private func layout() {
-        view.addSubview(categoryCV)
-        categoryCV.fillSuperview()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
+        collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 }
 
 //MARK: - UICollectionViewDelegate/DataSource
 
-extension HomeController: UICollectionViewDataSource {
+extension CategoryController {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCell
         cell.viewModel = CategoryViewModel(category: categories[indexPath.row])
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let category = categories[indexPath.row]
         let controller = ArtistListController(category: category)
         navigationController?.pushViewController(controller, animated: true)
@@ -87,9 +73,17 @@ extension HomeController: UICollectionViewDataSource {
 
 //MARK: - UICollectionViewDelegateFlowLayout
 
-extension HomeController: UICollectionViewDelegateFlowLayout {
+extension CategoryController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (view.bounds.width-3*8)/2
         return CGSize(width: cellWidth, height: cellWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 }

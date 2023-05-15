@@ -9,25 +9,17 @@ import UIKit
 
 private let cellIdentifier = "SongCell"
 
-final class FavoritesController: UIViewController {
+final class FavoritesController: UICollectionViewController {
     
     //MARK: - Properties
     
     private var favorites = [Song]() {
         didSet {
             DispatchQueue.main.async {
-                self.songCV.reloadData()
+                self.collectionView.reloadData()
             }
         }
     }
-    
-    private var songCV: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 8
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
-        return UICollectionView(frame: .zero, collectionViewLayout: layout)
-    }()
     
     private let refresher = UIRefreshControl()
     
@@ -35,8 +27,7 @@ final class FavoritesController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        style()
-        layout()
+        configureUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,34 +51,29 @@ final class FavoritesController: UIViewController {
     
     //MARK: - Helpers
     
-    private func style() {
+    private func configureUI() {
         title = "Favorites"
         view.backgroundColor = .systemGroupedBackground
         
-        songCV.delegate = self
-        songCV.dataSource = self
-        songCV.backgroundColor = .clear
-        songCV.register(SongCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
+        collectionView.register(SongCell.self, forCellWithReuseIdentifier: cellIdentifier)
         
         refresher.addTarget(self, action: #selector(refreshFavorites), for: .valueChanged)
-        songCV.refreshControl = refresher
-    }
-    
-    private func layout() {
-        view.addSubview(songCV)
-        songCV.fillSuperview()
+        collectionView.refreshControl = refresher
     }
 }
 
 //MARK: - UICollectionViewDelegate/DataSource
 
-extension FavoritesController: UICollectionViewDataSource {
+extension FavoritesController {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favorites.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! SongCell
         let song = favorites[indexPath.row]
         cell.viewModel = SongViewModel(song: song)
@@ -95,12 +81,12 @@ extension FavoritesController: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         Player.shared.handlePlay(songs: favorites, index: indexPath.row) { songEnd in
             if songEnd { Player.shared.stopTimer() }
-            self.songCV.reloadData()
+            self.collectionView.reloadData()
         }
-        self.songCV.reloadData()
+        self.collectionView.reloadData()
     }
 }
 
@@ -110,6 +96,14 @@ extension FavoritesController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (view.bounds.width-3*8)
         return CGSize(width: cellWidth, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 }
 

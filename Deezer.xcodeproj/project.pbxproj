@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7056577C2A0D4F3B00C7E791 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7056577B2A0D4F3B00C7E791 /* AppDelegate.swift */; };
-		705657802A0D4F3B00C7E791 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7056577F2A0D4F3B00C7E791 /* HomeController.swift */; };
+		705657802A0D4F3B00C7E791 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7056577F2A0D4F3B00C7E791 /* CategoryController.swift */; };
 		705657862A0D4F3B00C7E791 /* Deezer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 705657842A0D4F3B00C7E791 /* Deezer.xcdatamodeld */; };
 		705657882A0D4F3D00C7E791 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 705657872A0D4F3D00C7E791 /* Assets.xcassets */; };
 		7056578B2A0D4F3D00C7E791 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 705657892A0D4F3D00C7E791 /* LaunchScreen.storyboard */; };
@@ -43,7 +43,7 @@
 /* Begin PBXFileReference section */
 		705657782A0D4F3B00C7E791 /* Deezer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Deezer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7056577B2A0D4F3B00C7E791 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7056577F2A0D4F3B00C7E791 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		7056577F2A0D4F3B00C7E791 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		705657852A0D4F3B00C7E791 /* Deezer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Deezer.xcdatamodel; sourceTree = "<group>"; };
 		705657872A0D4F3D00C7E791 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7056578A2A0D4F3D00C7E791 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				7056579C2A0D626200C7E791 /* MainTabController.swift */,
-				7056577F2A0D4F3B00C7E791 /* HomeController.swift */,
+				7056577F2A0D4F3B00C7E791 /* CategoryController.swift */,
 				705657B62A0DB63200C7E791 /* ArtistListController.swift */,
 				705657BE2A0DCF5C00C7E791 /* ArtistDetailController.swift */,
 				70C8D9002A0E5DA100CEBC20 /* AlbumDetailController.swift */,
@@ -297,7 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				705657802A0D4F3B00C7E791 /* HomeController.swift in Sources */,
+				705657802A0D4F3B00C7E791 /* CategoryController.swift in Sources */,
 				7056577C2A0D4F3B00C7E791 /* AppDelegate.swift in Sources */,
 				70C8D9012A0E5DA100CEBC20 /* AlbumDetailController.swift in Sources */,
 				705657C52A0DD9CF00C7E791 /* AlbumViewModel.swift in Sources */,

@@ -20,15 +20,14 @@ final class MainTabController: UITabBarController {
     
     private func configureViewControllers() {
         view.backgroundColor = .white
-        self.delegate = self
-        
+        let layout = UICollectionViewFlowLayout()
         let home = templateNavigationController(image: Images.note,
                                                 selectedImage: Images.noteFill,
-                                                rootViewController: HomeController())
+                                                rootViewController: CategoryController(collectionViewLayout: layout))
         
         let favorites = templateNavigationController(image: Images.heart,
                                                      selectedImage: Images.heartFill,
-                                                     rootViewController: FavoritesController())
+                                                     rootViewController: FavoritesController(collectionViewLayout: layout))
         viewControllers = [home, favorites]
         
         tabBar.items?[0].title = "Musics"
@@ -48,15 +47,3 @@ final class MainTabController: UITabBarController {
         return nav
     }
 }
-
-//MARK: - UITabBarControllerDelegate
-
-extension MainTabController: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if let index = viewControllers?.firstIndex(of: viewController) {
-            print("DEBUG::index=\(index)")
-        }
-        return true
-    }
-}
-

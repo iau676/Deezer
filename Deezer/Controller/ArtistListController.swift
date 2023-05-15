@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "ArtistCell"
 
-final class ArtistListController: UIViewController {
+final class ArtistListController: UICollectionViewController {
     
     //MARK: - Properties
     
@@ -18,24 +18,16 @@ final class ArtistListController: UIViewController {
     private var artists = [Artist]() {
         didSet {
             DispatchQueue.main.async {
-                self.artistCV.reloadData()
+                self.collectionView.reloadData()
             }
         }
     }
-    
-    private var artistCV: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 8
-        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        return UICollectionView(frame: .zero, collectionViewLayout: layout)
-    }()
 
     //MARK: - Lifecycle
     
     init(category: Category) {
         self.category = category
-        super.init(nibName: nil, bundle: nil)
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
     
     required init?(coder: NSCoder) {
@@ -44,8 +36,7 @@ final class ArtistListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        style()
-        layout()
+        configureUI()
         fetchArtists()
     }
     
@@ -59,38 +50,33 @@ final class ArtistListController: UIViewController {
     
     //MARK: - Helpers
     
-    private func style() {
+    private func configureUI() {
         title = category.name
         view.backgroundColor = .systemGroupedBackground
         
-        artistCV.delegate = self
-        artistCV.dataSource = self
-        artistCV.backgroundColor = .clear
-        artistCV.register(ArtistCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-    }
-    
-    private func layout() {
-        view.addSubview(artistCV)
-        artistCV.fillSuperview()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
+        collectionView.register(ArtistCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 }
 
 //MARK: - UICollectionViewDelegate/DataSource
 
-extension ArtistListController: UICollectionViewDataSource {
+extension ArtistListController {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return artists.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ArtistCell
         let artist = artists[indexPath.row]
         cell.viewModel = ArtistViewModel(artist: artist)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let artist = artists[indexPath.row]
         let controller = ArtistDetailController(artist: artist)
         navigationController?.pushViewController(controller, animated: true)
@@ -103,5 +89,13 @@ extension ArtistListController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (view.bounds.width-3*8)/2
         return CGSize(width: cellWidth, height: cellWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 }

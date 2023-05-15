@@ -10,7 +10,7 @@ import UIKit
 private let headerIdentifier = "ArtistHeader"
 private let cellIdentifier = "AlbumCell"
 
-final class ArtistDetailController: UIViewController {
+final class ArtistDetailController: UICollectionViewController {
     
     //MARK: - Properties
     
@@ -19,24 +19,16 @@ final class ArtistDetailController: UIViewController {
     private var albums = [Album]() {
         didSet {
             DispatchQueue.main.async {
-                self.albumCV.reloadData()
+                self.collectionView.reloadData()
             }
         }
     }
-    
-    private var albumCV: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 8
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
-        return UICollectionView(frame: .zero, collectionViewLayout: layout)
-    }()
     
     //MARK: - Lifecycle
     
     init(artist: Artist) {
         self.artist = artist
-        super.init(nibName: nil, bundle: nil)
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
     
     required init?(coder: NSCoder) {
@@ -45,8 +37,7 @@ final class ArtistDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        style()
-        layout()
+        configureUI()
         fetchAlbums()
     }
     
@@ -60,47 +51,42 @@ final class ArtistDetailController: UIViewController {
     
     //MARK: - Helpers
     
-    private func style() {
+    private func configureUI() {
         title = artist.name
         view.backgroundColor = .systemGroupedBackground
         
-        albumCV.delegate = self
-        albumCV.dataSource = self
-        albumCV.backgroundColor = .clear
-        albumCV.register(AlbumCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        albumCV.register(ArtistHeader.self,
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
+        collectionView.register(AlbumCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(ArtistHeader.self,
                          forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                          withReuseIdentifier: headerIdentifier)
-    }
-    
-    private func layout() {
-        view.addSubview(albumCV)
-        albumCV.fillSuperview()
     }
 }
 
 //MARK: - UICollectionViewDelegate/DataSource
 
-extension ArtistDetailController: UICollectionViewDataSource {
+extension ArtistDetailController {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return albums.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! AlbumCell
         let album = albums[indexPath.row]
         cell.viewModel = AlbumViewModel(album: album)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! ArtistHeader
         header.viewModel = ArtistHeaderViewModel(artist: artist)
         return header
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let album = albums[indexPath.row]
         let controller = AlbumDetailController(album: album)
         navigationController?.pushViewController(controller, animated: true)
@@ -117,5 +103,13 @@ extension ArtistDetailController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 240)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 }
