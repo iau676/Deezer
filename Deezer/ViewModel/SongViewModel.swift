@@ -52,6 +52,6 @@ struct SongViewModel {
         let minStr = "\(min):"
         let secStr = sec < 10 ? "0\(sec)\"" : "\(sec)\""
         
-        return "\(hour > 0 ? hourStr : "")\(min > 0 ? minStr : "")\(sec > 0 ? secStr : "")"
+        return "\(hour > 0 ? hourStr : "")\(min > 0 ? minStr : "00:")\(sec > 0 ? secStr : "00\"")"
     }
 }
