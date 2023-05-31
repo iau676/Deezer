@@ -17,6 +17,8 @@ struct DeezerBrain {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    private init() {}
+    
     mutating func addFavorite(song: Song) {
         let newItem = FavoriteSong(context: self.context)
         newItem.id = Int64(song.id)
