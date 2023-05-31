@@ -54,8 +54,6 @@ final class ArtistListController: UICollectionViewController {
         title = category.name
         view.backgroundColor = .systemGroupedBackground
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.register(ArtistCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }

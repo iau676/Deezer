@@ -55,8 +55,6 @@ final class ArtistDetailController: UICollectionViewController {
         title = artist.name
         view.backgroundColor = .systemGroupedBackground
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.register(AlbumCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView.register(ArtistHeader.self,

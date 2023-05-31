@@ -43,8 +43,6 @@ final class CategoryController: UICollectionViewController {
         title = "Musics"
         view.backgroundColor = .systemGroupedBackground
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.register(CategoryCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }

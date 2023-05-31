@@ -64,8 +64,6 @@ final class AlbumDetailController: UICollectionViewController {
         title = album.title
         view.backgroundColor = .systemGroupedBackground
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.backgroundColor = .clear
         collectionView.register(SongCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
